@@ -31,11 +31,20 @@ function Light(list1,length1){
 	while(divArr.length!=0){
 		divArr.pop().style.background="rgb(255,166,0)";
 	}
-	for(var i=1;i<4;i++){
-		var div = list1.item(number(length1));
-		div.style.background = color();
-		divArr.push(div);
-	}
+
+	var numArr = new Array();
+  for(var i=1;i<4;i++){
+    var num = number(length1);
+    while(numArr[num]){  // 产生3个不能重复的随机数
+        num = number(length1);
+    }
+    numArr[num] = true;
+    var div = list1.item(num);
+    div.style.background = color();
+    divArr.push(div);
+  }
+
+  
 }
 
 //生成随机颜色
@@ -50,5 +59,5 @@ function color(){
 //生成随机数字
 function number(length){
 	var i = Math.random() * length;
-	return i;
+	 return Math.floor(i);
 }
